@@ -1,0 +1,48 @@
+-- Bazy danych i manipulacja danymi - Zadanie 1
+
+CREATE DATABASE my_database;
+
+CREATE TABLE my_database.library (
+id INTEGER PRIMARY KEY,
+title TEXT,
+date DATE NOT NULL
+);
+
+USE my_database;
+
+SELECT *
+FROM library;
+
+INSERT INTO library (id, title, date)
+VALUES (1, 'Haunting of hill house', '2025-10-20')
+
+INSERT INTO library (id, title, date)
+VALUES (2, 'Harry Potter', '2024-05-21'), (3, 'En man som heter Ove', '2020-11-22')
+
+ALTER TABLE library
+RENAME COLUMN `date` TO purchase_date;
+
+UPDATE library
+SET title = 'Lord of the ring', purchase_date = '2019-07-01'
+WHERE id = 2;
+
+ALTER TABLE library
+ADD COLUMN autor TEXT;
+
+UPDATE library
+SET autor = 'Shirley Jackson'
+WHERE id = 1;
+
+UPDATE library
+SET autor = 'Tolkien'
+WHERE id = 2;
+
+UPDATE library
+SET autor = 'Fredrik Backman'
+WHERE id = 3;
+
+DELETE FROM library
+WHERE id = 1 OR id = 3;
+
+SELECT autor 
+FROM library;
