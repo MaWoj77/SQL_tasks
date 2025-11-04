@@ -1,0 +1,56 @@
+CREATE DATABASE School_Coding;
+
+CREATE TABLE School_Coding.Mentors (
+id INTEGER PRIMARY KEY,
+name VARCHAR(255),
+surname VARCHAR(255),
+speciality VARCHAR(255),
+start_date DATE,
+termination_date DATE
+);
+
+USE School_Coding;
+
+SELECT * FROM Mentors;
+
+INSERT INTO Mentors (id, name, surname, speciality, start_date, termination_date)
+VALUES 
+(1, 'Maja', 'Woodo', 'architecture', '2024-05-21', '2025-03-21'), 
+(2, 'Maria', 'Miny', 'Sql Support', '2020-05-14', '2024-03-11'), 
+(3, 'Tom', 'Smith', 'Python', '2016-04-23', '2025-06-23'), 
+(4, 'John', 'Lenon', 'music', '2000-04-25', '2015-08-21'), 
+(5, 'Agnes', 'Johansson', 'Python', '2016-04-23', '2025-06-23'), 
+(6, 'Nina', 'Simon', 'music', '2006-03-21', '2021-05-13'), 
+(7, 'Agnes', 'Vinci', 'content creator', '2020-07-08', '2021-03-05'), 
+(8, 'Jacob', 'Piri', 'Java', '2015-03-23', '2025-06-23'), 
+(9, 'Patric', 'Svenson', 'social media specialist', '2016-04-23', '2025-06-23'), 
+(10, 'Steven', 'Pi', 'Python', '2016-04-21', '2025-07-23');
+
+SELECT * FROM Mentors;
+
+UPDATE Mentors
+SET surname = 'Robinson'
+WHERE id = 5;
+
+SELECT * FROM Mentors;
+
+UPDATE Mentors
+SET speciality = 'radio presenter'
+WHERE id = 9;
+
+SELECT * FROM Mentors;
+
+ALTER TABLE Mentors
+ADD COLUMN salary INT NOT NULL DEFAULT 1000;
+
+SELECT * FROM Mentors;
+
+UPDATE Mentors
+SET salary = 500
+WHERE id > 0;
+
+UPDATE Mentors
+SET salary = 1000
+WHERE id = 1 OR id = 2 OR id = 3;
+
+SELECT * FROM Mentors;
