@@ -1,0 +1,40 @@
+CREATE DATABASE MyHobbies;
+
+CREATE TABLE MyHobbies.Hobbies (
+id INT NOT NULL AUTO_INCREMENT,
+name VARCHAR(255) UNIQUE NOT NULL,
+description VARCHAR(255),
+accomplishment_date DATE,
+PRIMARY KEY (id)
+);
+
+USE MyHobbies;
+
+SELECT * FROM Hobbies;
+
+INSERT INTO Hobbies (name, description)
+VALUES
+('yoga', 'Yoga is a mind-body practice from ancient India that uses physical postures, breathing techniques, and meditation to unite the body, mind, and spirit.'),
+('piano', 'Playing the piano is the act of performing music on a large keyboard instrument by using precise finger movements to strike strings.'),
+('squash', 'Squash is a fast-paced racquet sport played by two or four players in a four-walled, enclosed court.'),
+('parkour', 'Parkour is a physical discipline that involves moving through an environment by running, jumping, and climbing to overcome obstacles in the most efficient way possible.'),
+('swedish', 'Swedish is a North Germanic language from the Indo-European family, spoken primarily in Sweden and parts of Finland by over 10 million native speakers.');
+
+SELECT * FROM Hobbies;
+
+INSERT INTO Hobbies (name, description, accomplishment_date)
+VALUES ('biking', 'Biking is the activity of riding a bicycle or other human-powered vehicle for transportation, exercise, and recreation. ', '2024-07-21');
+
+SELECT * FROM Hobbies;
+
+UPDATE Hobbies
+SET accomplishment_date = '2023-04-21'
+WHERE id = 4;
+
+SELECT * FROM Hobbies;
+
+DELETE FROM Hobbies
+WHERE accomplishment_date IS NULL
+AND id > 0;
+
+SELECT * FROM Hobbies;
