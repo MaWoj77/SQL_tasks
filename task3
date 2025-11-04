@@ -1,0 +1,46 @@
+CREATE DATABASE Gifts;
+
+CREATE TABLE Gifts.Gifts_2020(
+id INTEGER PRIMARY KEY,
+recipient_name VARCHAR(255) UNIQUE,
+idea VARCHAR(255) UNIQUE,
+price INTEGER NOT NULL,
+shop VARCHAR(255)
+);
+
+USE Gifts;
+
+SELECT * FROM Gifts_2020;
+
+INSERT INTO Gifts_2020 (id, recipient_name, idea, price, shop)
+VALUES 
+(1, 'Meg', 'SUP', 1500, 'XXL'),
+(2, 'Alex', 'skirt', 300, 'Stadium'),
+(3, 'John', 'ring', 500, 'Jewellery store'),
+(4, 'Max', 'shoes', 400, 'Stadium'),
+(5, 'Agnes', 'cup', 100, 'IKEA');
+
+SELECT * FROM Gifts_2020;
+
+UPDATE Gifts_2020
+SET idea = 'bicycle', shop = 'bicycle shop'
+WHERE id = 3;
+
+SELECT idea, shop FROM Gifts_2020
+WHERE id = 3;
+
+SELECT * FROM Gifts_2020
+WHERE id = 3;
+
+DELETE FROM Gifts_2020
+WHERE id = 1;
+
+SELECT * FROM Gifts_2020;
+
+ALTER TABLE Gifts_2020
+DROP COLUMN shop;
+
+SELECT * FROM Gifts_2020;
+
+SELECT recipient_name FROM Gifts_2020
+WHERE id >= 3 AND id <= 5;
