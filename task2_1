@@ -1,0 +1,45 @@
+CREATE DATABASE Pracownicy;
+
+USE Pracownicy;
+
+SELECT * FROM Pracownicy;
+
+ALTER TABLE Pracownicy CHANGE PRACOWNICY ID INTEGER PRIMARY KEY;
+
+ALTER TABLE Pracownicy
+CHANGE Column2 Imie VARCHAR(20);
+
+ALTER TABLE Pracownicy
+CHANGE Column3 Nazwisko VARCHAR(20);
+
+ALTER TABLE Pracownicy
+CHANGE Column4 Wiek INTEGER CHECK (Wiek > 0);
+
+ALTER TABLE Pracownicy
+CHANGE Column5 Kurs VARCHAR(20);
+
+SELECT * FROM Pracownicy;
+
+SELECT * FROM Pracownicy
+WHERE Wiek > 30;
+
+SELECT * FROM Pracownicy
+WHERE Wiek < 30;
+
+SELECT * FROM Pracownicy
+WHERE Nazwisko LIKE "K%ki";
+
+ALTER TABLE Pracownicy
+RENAME COLUMN ID TO NR;
+
+SELECT * FROM Pracownicy;
+
+SELECT * FROM Pracownicy
+WHERE NR IS NULL
+	OR Imie IS NULL
+    OR Nazwisko IS NULL
+    OR Wiek IS NULL
+    OR Kurs IS NULL;
+    
+SELECT NR, Imie, Nazwisko FROM Pracownicy
+WHERE Kurs = "Java";
