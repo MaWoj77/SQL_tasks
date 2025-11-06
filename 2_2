@@ -1,0 +1,62 @@
+USE Pracownicy;
+
+SELECT * FROM Pracownicy2;
+
+SET SQL_SAFE_UPDATES = 0;
+
+DELETE FROM Pracownicy2
+WHERE Pracownicy = 'ID';
+
+SET SQL_SAFE_UPDATES = 1;
+
+SELECT * FROM Pracownicy2;
+
+ALTER TABLE Pracownicy2 
+CHANGE Pracownicy ID INTEGER PRIMARY KEY;
+
+ALTER TABLE Pracownicy2
+CHANGE Column2 Imie VARCHAR(20);
+
+ALTER TABLE Pracownicy2
+CHANGE Column3 Nazwisko VARCHAR(20);
+
+ALTER TABLE Pracownicy2
+CHANGE Column4 Wiek INTEGER CHECK (Wiek > 0);
+
+ALTER TABLE Pracownicy2
+CHANGE Column5 Kurs VARCHAR(20);
+
+SELECT * FROM Pracownicy2;
+
+INSERT INTO Pracownicy2 (ID, Imie, Nazwisko, Wiek, Kurs)
+VALUES
+(6, "Przemysław", NULL, 34, "Java"),
+(7, "Robert", NULL, 35, "Java"),
+(9, NULL, "WOŹNIAK", 26, "Java"),
+(11, "Radosław", "DĄBROWSKI", 35, NULL),	
+(12, "Robert", "KOZŁOWSKI", NULL, "UX"),
+(16, NULL, "ZIELIŃSKI",	28, "Tester"),
+(19, "Roman", NULL, 39,	"Tester");
+
+SELECT * FROM Pracownicy2
+WHERE wiek = 28;
+
+SELECT * FROM Pracownicy2
+WHERE wiek <= 30;
+
+SELECT * FROM Pracownicy2
+WHERE Nazwisko LIKE "%ski%";
+
+SELECT * FROM Pracownicy2
+WHERE ID IN (1, 4, 7, 18, 20);
+
+SELECT * FROM Pracownicy2
+WHERE 
+ID IS NOT NULL
+AND Imie IS NOT NULL
+AND Nazwisko IS NOT NULL
+AND Wiek IS NOT NULL
+AND Kurs IS NOT NULL;
+
+SELECT * FROM Pracownicy2
+WHERE Kurs != "DS.";
