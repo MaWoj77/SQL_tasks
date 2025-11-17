@@ -1,0 +1,185 @@
+CREATE DATABASE Sklep_odziezowy;
+
+USE Sklep_odziezowy;
+
+CREATE TABLE Producenci(
+  id_producenta INTEGER PRIMARY KEY,
+  nazwa_producenta VARCHAR(30),
+  adres VARCHAR(50),
+  nip BIGINT,
+  data_umowy DATE
+);
+
+CREATE TABLE Produkty(
+  id_produktu INTEGER PRIMARY KEY,
+  id_producenta INTEGER,
+  nazwa_produktu VARCHAR(30),
+  opis VARCHAR(50),
+  cena_netto_zakupu FLOAT,
+  cena_brutto_zakupu FLOAT,
+  cena_netto_sprzedazy FLOAT,
+  cena_brutto_sprzedazy FLOAT,
+  procent_vat_sprzedazy FLOAT
+);
+
+CREATE TABLE Zamowienia(
+  id_zamowienia INTEGER PRIMARY KEY,
+  id_klienta INTEGER,
+  id_produktu INTEGER,
+  data_zamowienia DATE
+);
+
+CREATE TABLE Klienci(
+  id_klienta INTEGER PRIMARY KEY,
+  imie VARCHAR(30),
+  nazwisko VARCHAR(30), 
+  adres VARCHAR(50)
+);
+
+ALTER TABLE Produkty
+ADD CONSTRAINT producent_fk FOREIGN KEY (id_producenta) REFERENCES Producenci(id_producenta);
+
+ALTER TABLE Zamowienia
+ADD CONSTRAINT produkt_fk FOREIGN KEY (id_produktu) REFERENCES Produkty(id_produktu);
+
+ALTER TABLE Zamowienia
+ADD CONSTRAINT klient_fk FOREIGN KEY (id_klienta) REFERENCES Klienci(id_klienta);
+
+INSERT INTO Producenci (id_producenta, nazwa_producenta, adres, nip, data_umowy) VALUES
+(1, 'ModaPlus', 'Warszawa, ul. Kwiatowa 10', 1234567890, '2020-01-12'),
+(2, 'StylMax', 'Kraków, ul. Długa 5', 9876543210, '2021-03-20'),
+(3, 'LuxWear', 'Gdańsk, ul. Morska 22', 4567891230, '2019-07-15'),
+(4, 'UrbanFit', 'Wrocław, ul. Leśna 7', 1029384756, '2022-11-05');
+
+INSERT INTO Produkty (id_produktu, id_producenta, nazwa_produktu, opis, cena_netto_zakupu, cena_brutto_zakupu, cena_netto_sprzedazy, cena_brutto_sprzedazy, procent_vat_sprzedazy) VALUES
+(1, 1, 'Koszulka basic', 'Bawełna 100%', 20, 24.6, 40, 49.2, 23),
+(2, 1, 'Bluza z kapturem', 'Kolor czarny', 60, 73.8, 120, 147.6, 23),
+(3, 1, 'Spodnie jeans', 'Slim fit', 80, 98.4, 160, 196.8, 23),
+(4, 2, 'Sukienka letnia', 'Kolor różowy', 50, 61.5, 100, 123, 23),
+(5, 2, 'Koszula męska', 'Elegancka', 45, 55.35, 90, 110.7, 23),
+(6, 2, 'Marynarka', 'Kolor granatowy', 120, 147.6, 240, 295.2, 23),
+(7, 3, 'Kurtka zimowa', 'Puch naturalny', 150, 184.5, 300, 369, 23),
+(8, 3, 'Czapka zimowa', 'Wełna', 15, 18.45, 30, 36.9, 23),
+(9, 3, 'Rękawiczki', 'Skóra naturalna', 25, 30.75, 50, 61.5, 23),
+(10, 4, 'Buty sportowe', 'Bieganie', 100, 123, 200, 246, 23),
+(11, 4, 'Buty miejskie', 'Skóra', 90, 110.7, 180, 221.4, 23),
+(12, 4, 'Pasek skórzany', 'Kolor brązowy', 20, 24.6, 40, 49.2, 23),
+(13, 1, 'Szalik', 'Kolor szary', 18, 22.14, 36, 44.28, 23),
+(14, 2, 'Shorty męskie', 'Na lato', 25, 30.75, 50, 61.5, 23),
+(15, 3, 'Bluzka damska', 'Kolor biały', 22, 27.06, 44, 54.12, 23),
+(16, 4, 'Torba sportowa', 'Pojemna', 40, 49.2, 80, 98.4, 23),
+(17, 1, 'Skórzana kurtka', 'Kolor czarny', 180, 221.4, 360, 442.8, 23),
+(18, 2, 'Golf męski', 'Kolor bordowy', 55, 67.65, 110, 135.3, 23),
+(19, 3, 'Kamizelka puchowa', 'Lekka', 70, 86.1, 140, 172.2, 23),
+(20, 4, 'Okulary przeciwsłoneczne', 'UV400', 30, 36.9, 60, 73.8, 23);
+
+INSERT INTO Klienci (id_klienta, imie, nazwisko, adres) VALUES
+(1, 'Anna', 'Kowalska', 'Warszawa, ul. Słoneczna 1'),
+(2, 'Roman', 'Nowak', 'Kraków, ul. Krótka 2'),
+(3, 'Tomasz', 'Mazur', 'Gdańsk, ul. Długa 3'),
+(4, 'Agata', 'Wiśniewska', 'Wrocław, ul. Polna 4'),
+(5, 'Elżbieta', 'Kowalczyk', 'Łódź, ul. Brzozowa 5'),
+(6, 'Robert', 'Zieliński', 'Poznań, ul. Parkowa 6'),
+(7, 'Radosław', 'Dąbrowski', 'Szczecin, ul. Leśna 7'),
+(8, 'Joanna', 'Jankowska', 'Warszawa, ul. Morska 8'),
+(9, 'Patryk', 'Lewandowski', 'Kraków, ul. Cicha 9'),
+(10, 'Ewa', 'Wójcik', 'Wrocław, ul. Kolejowa 10');
+
+INSERT INTO Zamowienia (id_zamowienia, id_klienta, id_produktu, data_zamowienia) VALUES
+(1, 1, 3, '2024-01-12'),
+(2, 2, 5, '2024-01-15'),
+(3, 3, 1, '2024-01-18'),
+(4, 4, 7, '2024-01-20'),
+(5, 5, 10, '2024-01-25'),
+(6, 6, 12, '2024-01-28'),
+(7, 7, 15, '2024-02-01'),
+(8, 8, 18, '2024-02-05'),
+(9, 9, 20, '2024-02-10'),
+(10, 10, 8, '2024-02-12');
+
+SELECT * 
+FROM Produkty p
+JOIN Producenci pr 
+	ON p.id_producenta = pr.id_producenta
+WHERE pr.id_producenta = 1;
+
+SELECT * 
+FROM Produkty p
+JOIN Producenci pr 
+	ON p.id_producenta = pr.id_producenta
+WHERE pr.id_producenta = 1
+ORDER BY p.nazwa_produktu;
+
+SELECT AVG(cena_brutto_sprzedazy) 
+FROM Produkty p
+JOIN Producenci pr 
+	ON p.id_producenta = pr.id_producenta
+WHERE pr.id_producenta = 1;
+
+SET @avg_price := (
+	SELECT AVG(cena_brutto_sprzedazy)
+	FROM Produkty p
+	JOIN Producenci pr 
+		ON p.id_producenta = pr.id_producenta
+	WHERE pr.id_producenta = 1
+);
+
+SELECT nazwa_produktu, cena_brutto_sprzedazy,
+	CASE
+		WHEN cena_brutto_sprzedazy <= @avg_price THEN 'tanie'
+        ELSE 'drogie'
+	END AS kategoria_cenowa
+FROM Produkty p
+JOIN Producenci pr 
+	ON p.id_producenta = pr.id_producenta
+WHERE pr.id_producenta = 1
+ORDER BY cena_brutto_sprzedazy
+;
+
+SELECT nazwa_produktu
+FROM Produkty p
+JOIN Zamowienia z
+	ON  p.id_produktu = z.id_produktu;
+
+SELECT nazwa_produktu
+FROM Produkty p
+JOIN Zamowienia z
+	ON  p.id_produktu = z.id_produktu
+LIMIT 5;
+
+SELECT SUM(cena_brutto_sprzedazy)
+FROM Produkty p
+JOIN Zamowienia z
+	ON  p.id_produktu = z.id_produktu;
+
+SELECT *
+FROM Produkty p
+JOIN Zamowienia z
+	ON p.id_produktu = z.id_produktu
+ORDER BY data_zamowienia;
+
+SELECT *
+FROM Produkty
+WHERE id_produktu IS NULL OR
+    id_producenta IS NULL OR
+    nazwa_produktu IS NULL OR
+    opis IS NULL OR
+    cena_netto_zakupu IS NULL OR
+    cena_brutto_zakupu IS NULL OR
+    cena_netto_sprzedazy IS NULL OR
+    cena_brutto_sprzedazy IS NULL OR
+    procent_vat_sprzedazy IS NULL;
+    
+SELECT nazwa_produktu, cena_brutto_sprzedazy
+FROM Produkty p
+JOIN Zamowienia z 
+	ON p.id_produktu = z.id_produktu
+GROUP BY p.id_produktu, p.nazwa_produktu, p.cena_brutto_sprzedazy
+ORDER BY COUNT(z.id_produktu) DESC
+LIMIT 1;
+
+SELECT data_zamowienia
+FROM Zamowienia z
+GROUP BY z.data_zamowienia
+ORDER BY COUNT(data_zamowienia) DESC
+LIMIT 1;
