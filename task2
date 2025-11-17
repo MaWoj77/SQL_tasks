@@ -4,9 +4,9 @@ CREATE TABLE School_Coding.Mentors (
 id INTEGER PRIMARY KEY,
 name VARCHAR(255) NOT NULL,
 surname VARCHAR(255) NOT NULL,
-speciality VARCHAR(255),
-start_date DATE,
-termination_date DATE
+speciality VARCHAR(255) NOT NULL,
+start_date DATE NOT NULL,
+termination_date DATE NOT NULL
 );
 
 USE School_Coding;
